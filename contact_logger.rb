@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'json'
 
+set :bind, '0.0.0.0'
+
 post '/api/v0/contact/bug_reports' do
   path = ENV['LIVE'].nil? ? './../contact/bug_reports/' : '/home/fs/bug_reports/'
   File.write( path + Time.now.to_s + '.bug', request.env["rack.request.form_hash"])
