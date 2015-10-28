@@ -7,6 +7,7 @@ post '/api/v0/contact/bug_reports' do
   path = ENV['LIVE'].nil? ? './../contact/bug_reports/' : '/home/fs/bug_reports/'
   File.write( path + Time.now.to_s + Random.new.rand(1000).to_s + '.bug', request.env["rack.request.form_hash"])
   redirect ( '/api/v0/contact/submitted?return_url=' + params['return_url'].to_s ) unless params['return_url'].nil?
+  p request
 end
 
 get '/api/v0/contact/submitted' do
