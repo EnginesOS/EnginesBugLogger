@@ -6,7 +6,7 @@ set :bind, '0.0.0.0'
 post '/api/v0/contact/bug_reports' do
   path = ENV['LIVE'].nil? ? './../contact/bug_reports/' : '/home/fs/bug_reports/'
   File.write( path + Time.now.to_s + '.bug', request.env["rack.request.form_hash"])
-  redirect ( '/api/v0/contact/submitted?return_url=' + params['return_url'].to_s )
+  redirect ( '/api/v0/contact/submitted?return_url=' + params['return_url'].to_s ) if params['return_url'].present?
 end
 
 get '/api/v0/contact/submitted' do
