@@ -7,7 +7,7 @@ before do
   @bug_report = request.body.read
 end
 
-post '/v0/bug_reports' do
+post '/v0/exception_reports' do
   File.write( path + Time.now.to_s.gsub(' ', '_') + Random.new.rand(1000).to_s + '.bug', @bug_report)
 end
 

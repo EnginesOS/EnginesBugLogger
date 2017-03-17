@@ -1,20 +1,23 @@
 Engines Bug Logger v0.2
 =======================
 Sinatra application for remote exception logging from Engines applications.
-_______________________
 
-Bug files written to '/home/fs/exception_reports/'
+Deploy
+------
 
-Enter at start.rb
-Needs production enviroment set, e.g. ruby start.rb -p ????? -e production
+Persistent directory at '/home/fs/exception_reports/'
 
+Fire it up: start.rb
+(Needs production environment set, e.g. ruby start.rb -p ????? -e production)
 
 Usage
 -----
 
-POST to '/v0/exceptions' with exception report in the body. The JSON will be written to file with a timestamp in the name.
+POST to '/v0/exception_reports' with the exception report in the body. The exception report will be written to file with a timestamp in the name.
 
-The exception report doesn't need any specific format -- it just writes the request body to file. However, to make exception reports easier to handle, this format is recommeded:
+The exception report doesn't need any specific format -- this app just writes the request body to file.
+
+However, to make exception reports easier to handle, JSON with keys :class, :message, :backtrace, :detail is recommeded:
 ```
 {
   "class": "NameError",
@@ -28,4 +31,4 @@ The exception report doesn't need any specific format -- it just writes the requ
   }
 }
 ```
-Put whatever makes sense into "detail"...
+Put into "detail" whatever makes sense for helping with debugging.
